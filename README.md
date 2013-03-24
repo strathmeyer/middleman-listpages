@@ -21,6 +21,20 @@ To display all pages:
 <%= list_pages %>
 ```
 
+This will generate HTML like this (assuming "Apples" is the current page):
+```html
+<ul>
+  <li class='active'><a href="/apples/">Apples</a></li>
+  <li>
+    <a href="/oranges/">Oranges</a>
+    <ul>
+      <li><a href="/oranges/navel/">Navel Oranges</a></li>
+      <li><a href="/oranges/clementine/">Clementine Oranges</a></li>
+    </ul>
+  </li>
+</ul>
+```
+
 To display all children of current page:
 ```erb
 <%= list_pages current_page %>
