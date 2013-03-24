@@ -11,28 +11,28 @@ gem "middleman-listpages", :git => "git://github.com/strathmeyer/middleman-listp
 ```
 
 Then open your `config.rb` and add:
-```
+```ruby
 activate :listpages
 ```
 # Usage
 
 To display all pages:
-```
+```erb
 <%= list_pages %>
 ```
 
 To display all children of current page:
-```
+```erb
 <%= list_pages current_page %>
 ```
 
 To display one level of children of current page:
-```
+```erb
 <%= list_pages current_page, :depth => 1 %>
 ```
 
 To display all children of a specific page:
-```
+```erb
 <%= list_pages sitemap.find_resource_by_destination_path('index.html') %>
 ```
 
