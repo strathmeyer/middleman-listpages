@@ -6,8 +6,8 @@ ability to list the child pages of a given page.
 # Install
 
 Add `middleman-listpages` to your `Gemfile`
-```
-gem "middleman-listpages", :git => "git://github.com/strathmeyer/middleman-listpages.git"
+```ruby
+gem "middleman-listpages", "~> 0.0.1"
 ```
 
 Then open your `config.rb` and add:
