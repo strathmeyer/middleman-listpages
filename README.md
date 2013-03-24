@@ -40,9 +40,23 @@ To display all children of current page:
 <%= list_pages current_page %>
 ```
 
-To display one level of children of current page:
+You can use the `:depth` option to specify how many levels deep to display:
 ```erb
 <%= list_pages current_page, :depth => 1 %>
+```
+
+If you want to use options when displaying the root page, pass `nil` as the
+first agrument:
+```erb
+<%= list_pages nil, :depth => 1 %>
+```
+
+This will generate HTML like this (assuming "Apples" is the current page):
+```html
+<ul>
+  <li class='active'><a href="/apples/">Apples</a></li>
+  <li><a href="/oranges/">Oranges</a></li>
+</ul>
 ```
 
 To display all children of a specific page:
