@@ -71,15 +71,11 @@ Since you might have sub LIs inside that, you'll probably want to reset the CSS
 of the inner LIs via something like this:
 
 ```css
-li {
-  font-weight: normal;
+li, li.active li {
+    font-weight: normal;
 }
 
 li.active {
-  font-weight: bold;
-}
-
-li.active li {
-  font-weight: normal;
+    font-weight: bold;
 }
 ```
