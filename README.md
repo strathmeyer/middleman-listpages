@@ -51,6 +51,26 @@ first agrument:
 <%= list_pages nil, :depth => 1 %>
 ```
 
+To display the root page as well:
+```erb
+<%= list_pages nil, :include_root => true %>
+```
+
+This will generate:
+```html
+<ul>
+  <li><a href="/index.html">Index Page Title</a>
+  <li class='active'><a href="/apples/">Apples</a></li>
+  <li>
+    <a href="/oranges/">Oranges</a>
+    <ul>
+      <li><a href="/oranges/navel/">Navel Oranges</a></li>
+      <li><a href="/oranges/clementine/">Clementine Oranges</a></li>
+    </ul>
+  </li>
+</ul>
+```
+
 This will generate HTML like this (assuming "Apples" is the current page):
 ```html
 <ul>

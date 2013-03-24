@@ -1,0 +1,6 @@
+<ul>
+  <% if opts[:include_root] && opts[:current_depth] == 1 %>
+    <%= li_for sitemap.find_resource_by_destination_path('index.html') %>
+  <% end %>
+  <%= child_html.join("\n") %>
+</ul>

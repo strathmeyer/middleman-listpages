@@ -1,3 +1,5 @@
+require 'erb'
+
 module Middleman
   module ListPages
     class << self
@@ -16,26 +18,38 @@ module Middleman
         end
 
         page ||= sitemap.find_resource_by_destination_path('index.html')
-        children = filter_children(page.children, opts[:extensions])
+        children = filter_children(page.children, opts.slice(:extensions))
 
         if children.empty?
           ""
         else
-          opts[:current_depth] +=  1
-          child_html = children.map { |child| li_for(child, opts.dup) }
-          "<ul>#{child_html.join}</ul>"
+          child_html = children.map do |child|
+            my_opts = opts.dup
+            my_opts[:current_depth] +=  1
+            sub_list = list_pages(child, my_opts)
+            li_for(child, sub_list, my_opts)
+          end
+
+          render('_list', binding)
         end
       end
 
-      def li_for(page, opts={})
-        child_html = list_pages(page, opts)
+      def li_for(page, sub_list=nil, opts={})
         active = (page.path == current_page.path)
 
-        "<li class='#{active ? "active" : ""}'>#{link_to page.data.title, page}#{child_html}</li>"
+        render('_list_item', binding)
       end
 
-      def filter_children(children, extensions=nil)
-        extensions ||= ".html"
+      private
+
+      def render(path, bound)
+        full_path = File.join(File.dirname(__FILE__), "#{path}.erb")
+        template = ERB.new(File.read full_path)
+        template.result bound
+      end
+
+      def filter_children(children, opts=nil)
+        extensions = opts[:extensions] || ".html"
         extensions = Array(extensions)
 
         children.reject { |p| p.data.title.nil? }.select do |p|
