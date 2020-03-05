@@ -1,3 +1,9 @@
+# SECURITY ALERT
+
+This repo has been archived because it uses insecure versions of the `yard` gem and `rake` gem.
+
+Do NOT run the code in this repo. Use it only as an example.
+
 # middleman-listpages
 
 middleman-listpages is an extension for the [Middleman](http://middlemanapp.com) static site generator that adds the
